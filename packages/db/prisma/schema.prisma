@@ -15,3 +15,36 @@ datasource db {
 }
 
 
+model User{
+  id       Int   @id @default(autoincrement())
+  email    String @unique
+  name     String
+  enumRole     Role @default(member)
+  membership Membership[]
+  createdAt  DateTime @default(now())
+
+}
+
+enumRole{
+  admin
+  member
+}
+
+model Trainer{
+  id       Int   @id @default(autoincrement())
+  name     String
+  bio      String?
+  expertise String?
+  createdAt DateTime @default(now())
+}
+
+model Membership{
+  id       Int   @id @default(autoincrement())
+  userId   Int
+  user  User   @relation(fields: [userId], references: [id])
+  planName String
+  startDate DateTime 
+  endDate   DateTime 
+  isActive  Boolean
+  createdAt DateTime @default(now())
+}
