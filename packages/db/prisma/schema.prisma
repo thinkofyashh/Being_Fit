@@ -21,6 +21,7 @@ model User{
   name     String
   enumRole     Role @default(member)
   membership Membership[]
+  password  String
   createdAt  DateTime @default(now())
 
 }
@@ -35,6 +36,7 @@ model Trainer{
   name     String
   bio      String?
   expertise String?
+  password String
   createdAt DateTime @default(now())
 }
 
